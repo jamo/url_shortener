@@ -1,0 +1,22 @@
+- model_class = ShortUrl
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:url) + ':'
+  %br
+  = @short_url.url
+%p
+  %strong= model_class.human_attribute_name(:key) + ':'
+  %br
+  = @short_url.key
+
+%p
+  %strong This url will redirect you to your Url above
+  %a{href: @url}
+    =@url
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), short_urls_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_short_url_path(@short_url), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), short_url_path(@short_url), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
